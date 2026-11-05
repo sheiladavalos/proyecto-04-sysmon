@@ -210,10 +210,21 @@ Para proteger la privacidad, las evidencias destinadas a publicación fueron ano
 
 Se recopilaron cuatro capturas de pantalla que documentan los principales eventos analizados:
 
-1. `capturas_publicas/01_evento_proceso.jpeg` – Creación de proceso.
-2. `capturas_publicas/02_evento_red.jpeg` – Conexión de red.
-3. `capturas_publicas/03_evento_archivo.jpeg` – Creación de archivo.
-4. `capturas_publicas/04_evento_registro.jpeg` – Modificación del Registro de Windows.
+### Evento 1: Creación de proceso
+
+![Evento 1 - Creación de proceso](capturas_publicas/01_evento_proceso.jpeg)
+
+### Evento 2: Conexión de red
+
+![Evento 2 - Conexión de red](capturas_publicas/02_evento_red.jpeg)
+
+### Evento 3: Creación de archivo
+
+![Evento 3 - Creación de archivo](capturas_publicas/03_evento_archivo.jpeg)
+
+### Evento 4: Modificación del Registro de Windows
+
+![Evento 4 - Modificación del Registro de Windows](capturas_publicas/04_evento_registro.jpeg)
 
 Estas imágenes complementan las exportaciones de eventos y permiten visualizar los registros obtenidos durante las actividades controladas.
 
