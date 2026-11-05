@@ -170,7 +170,29 @@ Para su publicación, se prepararon copias anonimizadas de los ocho registros en
 
 Los archivos originales se conservaron sin modificaciones y por separado, junto con sus respectivos hashes SHA-256, en el entorno local.
 
-Para las copias destinadas a publicación se generó un manifiesto independiente, ubicado en `evidencias_publicas/hashes_publicas.sha256`.
+### Registros públicos disponibles
+
+**Evento ID 1 – Creación de procesos**
+- [evento_01_notepad.txt](evidencias_publicas/evento_01_notepad.txt)
+- [evento_01_notepad_nuevo.txt](evidencias_publicas/evento_01_notepad_nuevo.txt)
+
+**Evento ID 3 – Conexiones de red**
+- [evento_03_red.txt](evidencias_publicas/evento_03_red.txt)
+- [evento_03_red_nuevo.txt](evidencias_publicas/evento_03_red_nuevo.txt)
+
+**Evento ID 11 – Creación de archivos**
+- [evento_11_archivo.txt](evidencias_publicas/evento_11_archivo.txt)
+- [evento_11_archivo_nuevo.txt](evidencias_publicas/evento_11_archivo_nuevo.txt)
+
+**Evento ID 13 – Modificación del Registro**
+- [evento_13_registro.txt](evidencias_publicas/evento_13_registro.txt)
+- [evento_13_registro_nuevo.txt](evidencias_publicas/evento_13_registro_nuevo.txt)
+
+### Verificación de integridad
+
+Para las copias destinadas a publicación se generó un manifiesto independiente:
+
+- [hashes_publicas.sha256](evidencias_publicas/hashes_publicas.sha256)
 
 Los ocho archivos públicos fueron verificados individualmente mediante SHA-256 y todos obtuvieron el resultado CORRECTA.
 
