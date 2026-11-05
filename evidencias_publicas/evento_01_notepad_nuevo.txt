@@ -1,0 +1,34 @@
+﻿
+
+TimeCreated  : 04/11/2026 18:18:04
+Id           : 1
+ProviderName : Microsoft-Windows-Sysmon
+Message      : Process Create:
+               RuleName: -
+               UtcTime: 2026-11-04 21:18:04.086
+               ProcessGuid: {9399259a-a10c-6aeb-a85a-000000008701}
+               ProcessId: 20560
+               Image: C:\Windows\System32\notepad.exe
+               FileVersion: 10.0.19041.5794 (WinBuild.160101.0800)
+               Description: Notepad
+               Product: Microsoft® Windows® Operating System
+               Company: Microsoft Corporation
+               OriginalFileName: NOTEPAD.EXE
+               CommandLine: "C:\Windows\system32\notepad.exe" 
+               CurrentDirectory: C:\Users\UsuarioLab\Downloads\Sysmon\
+               User: EQUIPO-LAB\UsuarioLab
+               LogonGuid: {9399259a-9410-6ad1-718c-130000000000}
+               LogonId: 0x138C71
+               TerminalSessionId: 1
+               IntegrityLevel: High
+               Hashes: SHA256=DA5807BB0997CC6B5132950EC87EDA2B33B1AC4533CF1F7A22A6F3B576ED7C5B
+               ParentProcessGuid: {9399259a-5d47-6aeb-fc57-000000008701}
+               ParentProcessId: 25552
+               ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               ParentCommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" 
+               ParentUser: EQUIPO-LAB\UsuarioLab
+
+
+
+
+

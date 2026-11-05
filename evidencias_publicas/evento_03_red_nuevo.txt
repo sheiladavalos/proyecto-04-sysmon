@@ -1,0 +1,29 @@
+﻿
+
+TimeCreated  : 04/11/2026 18:30:39
+Id           : 3
+ProviderName : Microsoft-Windows-Sysmon
+Message      : Network connection detected:
+               RuleName: -
+               UtcTime: 2026-11-04 21:30:37.148
+               ProcessGuid: {9399259a-2eef-6add-e928-000000008701}
+               ProcessId: 5352
+               Image: C:\Program Files\Google\Chrome\Application\chrome.exe
+               User: EQUIPO-LAB\UsuarioLab
+               Protocol: udp
+               Initiated: true
+               SourceIsIpv6: true
+               SourceIp: 2001:db8::10
+               SourceHostname: EQUIPO-LAB
+               SourcePort: 50386
+               SourcePortName: -
+               DestinationIsIpv6: true
+               DestinationIp: 2600:1901:0:47fc:0:0:0:0
+               DestinationHostname: -
+               DestinationPort: 443
+               DestinationPortName: https
+
+
+
+
+

@@ -1,0 +1,29 @@
+﻿
+
+TimeCreated  : 04/11/2026 14:26:11
+Id           : 3
+ProviderName : Microsoft-Windows-Sysmon
+Message      : Network connection detected:
+               RuleName: -
+               UtcTime: 2026-11-04 17:26:09.272
+               ProcessGuid: {9399259a-6092-6aeb-3c58-000000008701}
+               ProcessId: 24688
+               Image: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               User: EQUIPO-LAB\UsuarioLab
+               Protocol: tcp
+               Initiated: true
+               SourceIsIpv6: true
+               SourceIp: 2001:db8::10
+               SourceHostname: EQUIPO-LAB
+               SourcePort: 35524
+               SourcePortName: -
+               DestinationIsIpv6: true
+               DestinationIp: 2606:4700:10:0:0:0:6814:179a
+               DestinationHostname: -
+               DestinationPort: 443
+               DestinationPortName: https
+
+
+
+
+

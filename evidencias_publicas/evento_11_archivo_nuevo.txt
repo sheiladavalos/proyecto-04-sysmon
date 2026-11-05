@@ -1,0 +1,19 @@
+﻿
+
+TimeCreated  : 04/11/2026 18:38:42
+Id           : 11
+ProviderName : Microsoft-Windows-Sysmon
+Message      : File created:
+               RuleName: -
+               UtcTime: 2026-11-04 21:38:42.081
+               ProcessGuid: {9399259a-5d47-6aeb-fc57-000000008701}
+               ProcessId: 25552
+               Image: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               TargetFilename: C:\Lab\proyecto-04-sysmon\evidencias\archivo_prueba_02.txt
+               CreationUtcTime: 2026-11-04 21:38:42.081
+               User: EQUIPO-LAB\UsuarioLab
+
+
+
+
+
