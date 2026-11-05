@@ -160,24 +160,23 @@ Se conservaron dos exportaciones:
 
 **Captura:** `capturas_publicas/04_evento_registro.jpeg`
 
-## 5. Recolecci�n e integridad de evidencias
+## 5. Recolección e integridad de evidencias
 
 Los registros obtenidos mediante Sysmon se exportaron a archivos de texto y se conservaron en la carpeta `evidencias` del entorno de trabajo original.
 
 En total, se conservaron ocho exportaciones correspondientes a los eventos ID 1, 3, 11 y 13.
 
-Para su publicaci�n, se prepararon copias anonimizadas de los ocho registros en la carpeta `evidencias_publicas`. Se reemplazaron datos identificatorios como el nombre de usuario, el nombre del equipo, las rutas personales y la direcci�n IP p�blica.
+Para su publicación, se prepararon copias anonimizadas de los ocho registros en la carpeta `evidencias_publicas`. Se reemplazaron datos identificatorios como el nombre de usuario, el nombre del equipo, las rutas personales y la dirección IP pública.
 
 Los archivos originales se conservaron sin modificaciones y por separado, junto con sus respectivos hashes SHA-256, en el entorno local.
 
-Para las copias destinadas a publicaci�n se gener� un manifiesto independiente, ubicado en `evidencias_publicas/hashes_publicas.sha256`.
+Para las copias destinadas a publicación se generó un manifiesto independiente, ubicado en `evidencias_publicas/hashes_publicas.sha256`.
 
-Los ocho archivos p�blicos fueron verificados individualmente mediante SHA-256 y todos obtuvieron el resultado CORRECTA.
+Los ocho archivos públicos fueron verificados individualmente mediante SHA-256 y todos obtuvieron el resultado CORRECTA.
 
-Los hashes permiten detectar modificaciones posteriores respecto del momento de su c�lculo. Sin embargo, no demuestran por s� solos la autenticidad del origen de los registros.
+Los hashes permiten detectar modificaciones posteriores respecto del momento de su cálculo. Sin embargo, no demuestran por sí solos la autenticidad del origen de los registros.
 
-De esta manera, se preservaron los archivos originales y se prepar� un conjunto de evidencias anonimizadas, verificables y aptas para su publicaci�n.
-
+De esta manera, se preservaron los archivos originales y se preparó un conjunto de evidencias anonimizadas, verificables y aptas para su publicación.
 ## 6. Aplicación en un entorno SOC / Blue Team
 
 Sysmon proporciona información que puede complementar los registros nativos de Windows y las herramientas de monitoreo de seguridad.
