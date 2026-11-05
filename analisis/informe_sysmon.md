@@ -4,13 +4,13 @@
 
 El presente proyecto tiene como objetivo implementar y utilizar Sysmon (System Monitor), una herramienta de Microsoft Sysinternals que permite registrar información detallada sobre diferentes actividades realizadas en un sistema Windows.
 
-Desde una perspectiva de seguridad informática, el monitoreo de eventos es fundamental para identificar comportamientos inusuales, investigar posibles incidentes y recopilar información útil para los equipos SOC (Security Operations Center).
+Desde una perspectiva de seguridad informática, el monitoreo de eventos resulta fundamental para identificar comportamientos inusuales, investigar posibles incidentes y recopilar información útil para los equipos SOC (Security Operations Center).
 
 Durante este laboratorio se instaló y configuró Sysmon en un equipo con Windows 10 Pro de 64 bits. Posteriormente, se generaron actividades controladas para observar cómo quedan registradas en los eventos del sistema y analizar la información obtenida.
 
 El trabajo se orientó a la práctica de tareas propias de un perfil SOC / Blue Team, con especial atención a la identificación de procesos, conexiones de red, creación de archivos y modificaciones del Registro de Windows.
 
-Además, se aplicaron procedimientos básicos de preservación de evidencias digitales mediante la exportación de registros y el cálculo y verificación de hashes SHA-256.
+Además, se aplicaron procedimientos básicos de preservación de evidencias digitales mediante la exportación de registros y el cálculo de hashes SHA-256.
 
 ## 2. Objetivos
 
@@ -74,13 +74,11 @@ Se conservaron dos exportaciones:
 
 La segunda corresponde a una nueva ejecución de Notepad realizada durante la recuperación de evidencia.
 
-**Captura:** `../capturas_publicas/01_evento_proceso.jpeg`
+**Captura:** `capturas_publicas/01_evento_proceso.jpeg`
 
 ### 4.2. Event ID 3 – Network Connect
 
-Se realizaron pruebas de conectividad de red mediante PowerShell utilizando el comando:
-
-`Test-NetConnection example.com -Port 443`
+Se realizaron pruebas de conectividad de red mediante PowerShell utilizando el comando `Test-NetConnection example.com -Port 443`.
 
 La evidencia inicial permitió observar una conexión TCP hacia el puerto 443, asociada al proceso PowerShell.
 
@@ -99,7 +97,7 @@ Los registros permitieron identificar:
 
 Este evento es útil para investigar comunicaciones de red originadas en el equipo. En un entorno SOC permite detectar conexiones hacia destinos inesperados, comunicaciones inusuales y posibles indicadores de actividad maliciosa.
 
-Es importante diferenciar las conexiones observadas: una conexión TCP hacia el puerto 443 y una conexión UDP hacia el mismo puerto no representan necesariamente el mismo tipo de tráfico. El tráfico UDP/443 puede ser compatible con el protocolo QUIC, utilizado por navegadores modernos, aunque el registro por sí solo no permite confirmar esa interpretación.
+Es importante diferenciar las conexiones observadas: una conexión TCP hacia el puerto 443 y una conexión UDP hacia el mismo puerto no representan necesariamente el mismo tipo de tráfico. Asimismo, el tráfico UDP/443 puede estar relacionado con QUIC, utilizado por navegadores modernos.
 
 Las conexiones registradas durante este laboratorio fueron actividades de prueba y no constituyen por sí solas evidencia de actividad maliciosa.
 
@@ -108,7 +106,7 @@ Se conservaron dos exportaciones:
 - `evento_03_red.txt`
 - `evento_03_red_nuevo.txt`
 
-**Captura:** `../capturas_publicas/02_evento_red.jpeg`
+**Captura:** `capturas_publicas/02_evento_red.jpeg`
 
 ### 4.3. Event ID 11 – File Create
 
@@ -137,7 +135,7 @@ Se conservaron dos exportaciones:
 - `evento_11_archivo.txt`
 - `evento_11_archivo_nuevo.txt`
 
-**Captura:** `../capturas_publicas/03_evento_archivo.jpeg`
+**Captura:** `capturas_publicas/03_evento_archivo.jpeg`
 
 ### 4.4. Event ID 13 – Registry Value Set
 
@@ -160,7 +158,39 @@ Se conservaron dos exportaciones:
 - `evento_13_registro.txt`
 - `evento_13_registro_nuevo.txt`
 
-**Captura:** `../capturas_publicas/04_evento_registro.jpeg`
+**Captura:** `capturas_publicas/04_evento_registro.jpeg`
+
+### 4.5. Criterios de investigación y evaluación SOC
+
+Desde la perspectiva de un analista SOC, la identificación de un evento de Sysmon constituye un primer paso dentro de una investigación. Para determinar si una actividad representa un riesgo, es necesario analizar su contexto, correlacionarla con otros registros y evaluar si corresponde al comportamiento esperado del sistema.
+
+A continuación, se presentan algunos criterios que podrían utilizarse para investigar los eventos registrados durante este laboratorio.
+
+| Evento | Comportamiento que requiere atención | Información adicional a investigar |
+|---|---|---|
+| ID 1 – Creación de proceso | Ejecución de procesos desde rutas inusuales o mediante líneas de comandos sospechosas. | Proceso padre, usuario, ruta del ejecutable, línea de comandos, hash y firma digital. |
+| ID 3 – Conexión de red | Comunicaciones hacia destinos desconocidos o conexiones no habituales para el proceso. | Dirección IP, puerto, protocolo, proceso de origen, reputación del destino y contexto de la conexión. |
+| ID 11 – Creación de archivo | Aparición de archivos inesperados en directorios sensibles o temporales. | Ruta, nombre, proceso responsable, hash, origen del archivo y posible ejecución posterior. |
+| ID 13 – Modificación del Registro | Cambios inesperados en claves o valores relacionados con la configuración y el inicio del sistema. | Ruta de la clave, valor modificado, proceso responsable, usuario y posible relación con mecanismos de persistencia. |
+
+**Procedimiento inicial ante una posible alerta**
+
+Ante la detección de una actividad sospechosa, un analista SOC podría seguir estos pasos:
+
+1. **Validar el evento:** comprobar que el registro contiene información suficiente y que corresponde a una actividad real del sistema.
+2. **Analizar el contexto:** revisar el proceso involucrado, el usuario, la fecha, la hora y los recursos afectados.
+3. **Correlacionar evidencias:** comparar el evento con otros registros de Sysmon y fuentes disponibles, como los registros de seguridad de Windows.
+4. **Evaluar el riesgo:** determinar si el comportamiento es esperado, inusual o potencialmente malicioso.
+5. **Documentar los hallazgos:** conservar los registros relevantes, registrar las acciones realizadas y dejar constancia de las conclusiones.
+6. **Escalar o aplicar medidas:** si existen indicios suficientes de compromiso, comunicar el hallazgo al equipo responsable y seguir el procedimiento de respuesta a incidentes de la organización.
+
+**Aplicación al laboratorio**
+
+Las actividades registradas en este proyecto fueron generadas de manera controlada con fines educativos. No se identificó ni se confirmó un incidente de seguridad real.
+
+Sin embargo, los eventos analizados permiten practicar procedimientos de monitoreo, identificación de comportamientos inusuales, correlación de registros y preservación de evidencias, competencias relevantes para las tareas de un analista SOC de nivel inicial.
+
+Es importante destacar que un evento aislado no permite confirmar por sí solo la existencia de una amenaza. La evaluación debe considerar el contexto y la correlación con otras fuentes de información.
 
 ## 5. Recolección e integridad de evidencias
 
@@ -172,14 +202,35 @@ Para su publicación, se prepararon copias anonimizadas de los ocho registros en
 
 Los archivos originales se conservaron sin modificaciones y por separado, junto con sus respectivos hashes SHA-256, en el entorno local.
 
-Para las copias destinadas a publicación se generó un manifiesto independiente, ubicado en `evidencias_publicas/hashes_publicas.sha256`.
+### Registros públicos disponibles
+
+**Evento ID 1 – Creación de procesos**
+- [evento_01_notepad.txt](evidencias_publicas/evento_01_notepad.txt)
+- [evento_01_notepad_nuevo.txt](evidencias_publicas/evento_01_notepad_nuevo.txt)
+
+**Evento ID 3 – Conexiones de red**
+- [evento_03_red.txt](evidencias_publicas/evento_03_red.txt)
+- [evento_03_red_nuevo.txt](evidencias_publicas/evento_03_red_nuevo.txt)
+
+**Evento ID 11 – Creación de archivos**
+- [evento_11_archivo.txt](evidencias_publicas/evento_11_archivo.txt)
+- [evento_11_archivo_nuevo.txt](evidencias_publicas/evento_11_archivo_nuevo.txt)
+
+**Evento ID 13 – Modificación del Registro**
+- [evento_13_registro.txt](evidencias_publicas/evento_13_registro.txt)
+- [evento_13_registro_nuevo.txt](evidencias_publicas/evento_13_registro_nuevo.txt)
+
+### Verificación de integridad
+
+Para las copias destinadas a publicación se generó un manifiesto independiente:
+
+- [hashes_publicas.sha256](evidencias_publicas/hashes_publicas.sha256)
 
 Los ocho archivos públicos fueron verificados individualmente mediante SHA-256 y todos obtuvieron el resultado CORRECTA.
 
 Los hashes permiten detectar modificaciones posteriores respecto del momento de su cálculo. Sin embargo, no demuestran por sí solos la autenticidad del origen de los registros.
 
 De esta manera, se preservaron los archivos originales y se preparó un conjunto de evidencias anonimizadas, verificables y aptas para su publicación.
-
 ## 6. Aplicación en un entorno SOC / Blue Team
 
 Sysmon proporciona información que puede complementar los registros nativos de Windows y las herramientas de monitoreo de seguridad.
@@ -213,10 +264,21 @@ Para proteger la privacidad, las evidencias destinadas a publicación fueron ano
 
 Se recopilaron cuatro capturas de pantalla que documentan los principales eventos analizados:
 
-1. `../capturas_publicas/01_evento_proceso.jpeg` – Creación de proceso.
-2. `../capturas_publicas/02_evento_red.jpeg` – Conexión de red.
-3. `../capturas_publicas/03_evento_archivo.jpeg` – Creación de archivo.
-4. `../capturas_publicas/04_evento_registro.jpeg` – Modificación del Registro de Windows.
+### Evento 1: Creación de proceso
+
+![Evento 1 - Creación de proceso](capturas_publicas/01_evento_proceso.jpeg)
+
+### Evento 2: Conexión de red
+
+![Evento 2 - Conexión de red](capturas_publicas/02_evento_red.jpeg)
+
+### Evento 3: Creación de archivo
+
+![Evento 3 - Creación de archivo](capturas_publicas/03_evento_archivo.jpeg)
+
+### Evento 4: Modificación del Registro de Windows
+
+![Evento 4 - Modificación del Registro de Windows](capturas_publicas/04_evento_registro.jpeg)
 
 Estas imágenes complementan las exportaciones de eventos y permiten visualizar los registros obtenidos durante las actividades controladas.
 
